@@ -82,13 +82,7 @@
 	margin: 0;
 	padding: 0;
 
-	&__group {
-		margin: 0;
-	}
-
-	// A line between rows. In Fix first each item is its own group, and a tier heading draws the line above a new tier.
-	> .wc-sales-readiness-row + .wc-sales-readiness-row,
-	> .wc-sales-readiness-list__group:not(:first-child, :has(> .wc-sales-readiness-tier)) .wc-sales-readiness-row {
+	> .wc-sales-readiness-row + .wc-sales-readiness-row {
 		border-block-start: 1px solid var(--wc-sr-stroke);
 	}
 }
@@ -102,7 +96,7 @@
 	padding: var(--wpds-dimension-padding-lg) 0 var(--wpds-dimension-padding-xs);
 	border-block-start: 1px solid var(--wc-sr-stroke);
 
-	.wc-sales-readiness-list__group:first-child > & {
+	&:first-child {
 		border-block-start: 0;
 		padding-block-start: var(--wpds-dimension-padding-2xl);
 	}
