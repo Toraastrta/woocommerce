@@ -4263,28 +4263,20 @@ function wc_update_1140_add_mpn_to_product_lookup_table(): void {
 }
 
 /**
- * Backfill frequently read HPOS and product catalog options that may never have been written to the DB.
+ * Ensure autoload is on for frequently read HPOS and product catalog options.
+ *
+ * Catalog options are created by WC_Install::create_options() before this migration runs.
+ * HPOS options are skipped silently if they don't exist (store never enabled HPOS).
  *
  * @since 11.4.0
  */
 function wc_update_1140_autoload_options_for_hpos_and_product_catalog_display(): void {
-	// Backfill catalog options that may have never been saved (theme uses defaults).
-	$defaults = array(
-		'woocommerce_catalog_columns'         => 4,
-		'woocommerce_catalog_rows'            => 4,
-		'woocommerce_default_catalog_orderby' => 'menu_order',
-	);
-	foreach ( $defaults as $option => $default ) {
-		add_option( $option, $default, '', true );
-	}
-
-	// Ensure autoload is on for all frequently read options.
 	wp_set_option_autoload_values(
 		array(
-			'woocommerce_catalog_columns' => true,
-			'woocommerce_catalog_rows' => true,
-			'woocommerce_default_catalog_orderby' => true,
-			'woocommerce_custom_orders_table_data_sync_enabled' => true,
+			'woocommerce_catalog_columns'                          => true,
+			'woocommerce_catalog_rows'                             => true,
+			'woocommerce_default_catalog_orderby'                  => true,
+			'woocommerce_custom_orders_table_data_sync_enabled'    => true,
 			'woocommerce_custom_orders_table_background_sync_mode' => true,
 		)
 	);
