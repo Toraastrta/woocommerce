@@ -1294,12 +1294,13 @@ class WC_Install {
 		add_option( 'woocommerce_thumbnail_image_width', '300', '', true );
 		add_option( 'woocommerce_checkout_highlight_required_fields', 'yes', '', true );
 		add_option( 'woocommerce_demo_store', 'no', '', false );
-		add_option( 'woocommerce_custom_orders_table_data_sync_enabled', 'no', '', true );
 		add_option( 'woocommerce_catalog_columns', '4', '', true );
 		add_option( 'woocommerce_catalog_rows', '4', '', true );
 		add_option( 'woocommerce_default_catalog_orderby', 'menu_order', '', true );
 
 		if ( self::is_new_install() ) {
+			add_option( 'woocommerce_custom_orders_table_data_sync_enabled', 'no', '', true );
+
 			// Define initial tax classes.
 			WC_Tax::create_tax_class( __( 'Reduced rate', 'woocommerce' ) );
 			WC_Tax::create_tax_class( __( 'Zero rate', 'woocommerce' ) );
