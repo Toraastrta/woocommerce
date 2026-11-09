@@ -4265,9 +4265,6 @@ function wc_update_1140_add_mpn_to_product_lookup_table(): void {
 /**
  * Ensure autoload is on for frequently read HPOS and product catalog options.
  *
- * Catalog options are created by WC_Install::create_options() before this migration runs.
- * HPOS options are skipped silently if they don't exist (store never enabled HPOS).
- *
  * @since 11.4.0
  */
 function wc_update_1140_autoload_options_for_hpos_and_product_catalog_display(): void {
