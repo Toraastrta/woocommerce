@@ -4268,24 +4268,24 @@ function wc_update_1140_add_mpn_to_product_lookup_table(): void {
  * @since 11.4.0
  */
 function wc_update_1140_autoload_options_for_hpos_and_product_catalog_display(): void {
+	// Backfill catalog options that may have never been saved (theme uses defaults).
 	$defaults = array(
 		'woocommerce_catalog_columns'         => 4,
 		'woocommerce_catalog_rows'            => 4,
 		'woocommerce_default_catalog_orderby' => 'menu_order',
 	);
 	foreach ( $defaults as $option => $default ) {
-		if ( false === get_option( $option, false ) ) {
-			add_option( $option, $default, '', true );
-		} else {
-			wp_set_option_autoload( $option, true );
-		}
+		add_option( $option, $default, '', true );
 	}
 
-	// HPOS options: autoload only, don't backfill — adding data_sync_enabled triggers table creation via
-	// DataSynchronizer::process_added_option; background_sync_mode derives its default dynamically.
-	foreach ( array( 'woocommerce_custom_orders_table_data_sync_enabled', 'woocommerce_custom_orders_table_background_sync_mode' ) as $hpos_option ) {
-		if ( false !== get_option( $hpos_option, false ) ) {
-			wp_set_option_autoload( $hpos_option, true );
-		}
-	}
+	// Ensure autoload is on for all frequently read options.
+	wp_set_option_autoload_values(
+		array(
+			'woocommerce_catalog_columns'                          => true,
+			'woocommerce_catalog_rows'                             => true,
+			'woocommerce_default_catalog_orderby'                  => true,
+			'woocommerce_custom_orders_table_data_sync_enabled'    => true,
+			'woocommerce_custom_orders_table_background_sync_mode' => true,
+		)
+	);
 }
