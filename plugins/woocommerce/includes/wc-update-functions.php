@@ -4281,10 +4281,10 @@ function wc_update_1140_autoload_options_for_hpos_and_product_catalog_display():
 	// Ensure autoload is on for all frequently read options.
 	wp_set_option_autoload_values(
 		array(
-			'woocommerce_catalog_columns'                          => true,
-			'woocommerce_catalog_rows'                             => true,
-			'woocommerce_default_catalog_orderby'                  => true,
-			'woocommerce_custom_orders_table_data_sync_enabled'    => true,
+			'woocommerce_catalog_columns' => true,
+			'woocommerce_catalog_rows' => true,
+			'woocommerce_default_catalog_orderby' => true,
+			'woocommerce_custom_orders_table_data_sync_enabled' => true,
 			'woocommerce_custom_orders_table_background_sync_mode' => true,
 		)
 	);
