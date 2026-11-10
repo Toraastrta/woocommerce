@@ -378,7 +378,6 @@ class WC_Install {
 		'11.4.0'   => array(
 			'wc_update_1140_re_enable_autoload_options',
 			'wc_update_1140_add_mpn_to_product_lookup_table',
-			'wc_update_1140_autoload_options_for_hpos_and_product_catalog_display',
 			// Run again for stores whose database was already at 11.3.0 or later, as they skip the 11.2.2 key.
 			'wc_update_1122_remove_objects_from_default_attributes',
 		),
@@ -1304,8 +1303,6 @@ class WC_Install {
 		add_option( 'woocommerce_default_catalog_orderby', 'menu_order', '', true );
 
 		if ( self::is_new_install() ) {
-			add_option( 'woocommerce_custom_orders_table_data_sync_enabled', 'no', '', true );
-
 			// Define initial tax classes.
 			WC_Tax::create_tax_class( __( 'Reduced rate', 'woocommerce' ) );
 			WC_Tax::create_tax_class( __( 'Zero rate', 'woocommerce' ) );

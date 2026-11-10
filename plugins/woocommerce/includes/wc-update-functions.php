@@ -4241,6 +4241,11 @@ function wc_update_1140_re_enable_autoload_options(): void {
 			'woocommerce_show_marketplace_suggestions'    => true,
 			'woocommerce_enable_delayed_account_creation' => true,
 			'woocommerce_logs_logging_enabled'            => true,
+			'woocommerce_catalog_columns'                 => true,
+			'woocommerce_catalog_rows'                    => true,
+			'woocommerce_default_catalog_orderby'         => true,
+			'woocommerce_custom_orders_table_data_sync_enabled' => true,
+			'woocommerce_custom_orders_table_background_sync_mode' => true,
 		)
 	);
 }
@@ -4338,21 +4343,4 @@ function wc_update_1122_remove_objects_from_default_attributes(): void {
 			array( 'source' => 'wc-updater' )
 		);
 	}
-}
-
-/**
- * Ensure autoload is on for frequently read HPOS and product catalog options.
- *
- * @since 11.4.0
- */
-function wc_update_1140_autoload_options_for_hpos_and_product_catalog_display(): void {
-	wp_set_option_autoload_values(
-		array(
-			'woocommerce_catalog_columns'         => true,
-			'woocommerce_catalog_rows'            => true,
-			'woocommerce_default_catalog_orderby' => true,
-			'woocommerce_custom_orders_table_data_sync_enabled' => true,
-			'woocommerce_custom_orders_table_background_sync_mode' => true,
-		)
-	);
 }
