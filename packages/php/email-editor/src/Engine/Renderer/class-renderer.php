@@ -15,6 +15,7 @@ use Automattic\WooCommerce\EmailEditor\Engine\Renderer\ContentRenderer\Rendering
 use Automattic\WooCommerce\EmailEditor\Engine\Templates\Templates;
 use Automattic\WooCommerce\EmailEditor\Engine\Theme_Controller;
 use Automattic\WooCommerce\EmailEditor\Engine\PersonalizationTags\Personalization_Tags_Registry;
+use Automattic\WooCommerce\EmailEditor\Engine\Personalizer;
 use WP_Style_Engine;
 
 /**
@@ -301,8 +302,7 @@ class Renderer {
 		}
 
 		// Match all of the code comments that look like a personalization tags.
-		// A value quoted right after "=" is consumed whole, so a "]" inside it does not end the tag.
-		$pattern = '/<!--\[(' . implode( '|', $token_prefixes ) . ')(?:\s(?:=(?:"[^"]*"|\'[^\']*\')|[^\]])*+)?\]-->/';
+		$pattern = '/<!--\[(' . implode( '|', $token_prefixes ) . ')' . Personalizer::TAG_ARGUMENTS_PATTERN . '\]-->/';
 
 		$template = preg_replace_callback(
 			$pattern,
