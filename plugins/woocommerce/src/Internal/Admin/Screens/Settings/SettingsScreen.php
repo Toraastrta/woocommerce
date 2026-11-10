@@ -148,7 +148,7 @@ final class SettingsScreen {
 	 *
 	 * @internal
 	 *
-	 * @since 11.3.0
+	 * @since 11.4.0
 	 *
 	 * @param mixed $is_connected Whether the current page shows the header bar.
 	 * @return mixed
