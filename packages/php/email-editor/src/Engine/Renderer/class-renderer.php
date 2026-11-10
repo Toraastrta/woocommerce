@@ -301,7 +301,8 @@ class Renderer {
 		}
 
 		// Match all of the code comments that look like a personalization tags.
-		$pattern = '/<!--\[(' . implode( '|', $token_prefixes ) . ')(?:\s+[^\]]*)?\]-->/';
+		// A value quoted right after "=" is consumed whole, so a "]" inside it does not end the tag.
+		$pattern = '/<!--\[(' . implode( '|', $token_prefixes ) . ')(?:\s(?:=(?:"[^"]*"|\'[^\']*\')|[^\]])*+)?\]-->/';
 
 		$template = preg_replace_callback(
 			$pattern,
