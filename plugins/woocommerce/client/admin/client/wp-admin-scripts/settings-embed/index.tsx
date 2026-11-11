@@ -32,6 +32,7 @@ import { registerSettingsEmailPreviewFill } from '~/settings-email/settings-emai
 import { registerSettingsEmailFeedbackFill } from '~/settings-email/settings-email-feedback-slotfill';
 import { registerSettingsEmailListingFill } from '~/settings-email/settings-email-listing-slotfill';
 import { registerSettingsUIScreens } from '~/settings/settings-ui-registry';
+import { registerAiShoppingHeader } from '~/sales-readiness/ai-shopping-header';
 
 const renderPaymentsSettings = () => {
 	const pages = [
@@ -93,6 +94,24 @@ const renderSalesReadinessOverview = () => {
 	}
 };
 
+/**
+ * AI tools > AI shopping: the breadcrumb and description become the page header. The PHP section
+ * leaves them on a root, with a plain breadcrumb that shows until this runs.
+ */
+const renderAiShoppingHeader = () => {
+	const root = document.getElementById( 'wc-agentic-commerce-header' );
+	if ( root ) {
+		const { parentLabel, parentUrl, title, description } = root.dataset;
+		registerAiShoppingHeader( {
+			parentLabel: parentLabel ?? '',
+			parentUrl: parentUrl ?? '',
+			title: title ?? '',
+			description: description ?? '',
+		} );
+		root.remove();
+	}
+};
+
 const registerSlotFills = () => {
 	possiblyRenderSettingsSlots();
 	registerTaxSettingsConflictErrorFill();
@@ -122,4 +141,5 @@ const registerSlotFills = () => {
 
 renderPaymentsSettings();
 renderSalesReadinessOverview();
+renderAiShoppingHeader();
 registerSlotFills();

@@ -41,11 +41,18 @@
 		gap: var(--wpds-dimension-gap-lg);
 		max-width: 720px;
 		margin: 0 auto;
-		padding-block: var(--wpds-dimension-padding-3xl);
+		// The settings form already leaves a gap under the tabs.
+		padding-block: 0 var(--wpds-dimension-padding-3xl);
 	}
 }
 
 .wc-sales-readiness-card {
+	border-color: var(--wpds-color-stroke-surface-neutral);
+
+	&__title {
+		font-weight: 600;
+	}
+
 	&__head {
 		display: flex;
 		align-items: center;
@@ -67,7 +74,7 @@
 .wc-sales-readiness-overview__heading {
 	display: block;
 	font-weight: 600;
-	margin-block-start: var(--wpds-dimension-gap-md);
+	margin-block-start: var(--wpds-dimension-padding-xl);
 }
 
 .wc-sales-readiness-list {
@@ -79,13 +86,16 @@
 		margin: 0;
 	}
 
-	> .wc-sales-readiness-row + .wc-sales-readiness-row {
+	// A line between rows. In Fix first each item is its own group, and a tier heading draws the line above a new tier.
+	> .wc-sales-readiness-row + .wc-sales-readiness-row,
+	> .wc-sales-readiness-list__group:not(:first-child, :has(> .wc-sales-readiness-tier)) .wc-sales-readiness-row {
 		border-block-start: 1px solid var(--wc-sr-stroke);
 	}
 }
 
 .wc-sales-readiness-tier {
 	display: block;
+	font-weight: 500;
 	text-transform: uppercase;
 	letter-spacing: 0.04em;
 	color: var(--wc-sr-muted);
@@ -94,56 +104,40 @@
 
 	.wc-sales-readiness-list__group:first-child > & {
 		border-block-start: 0;
-		padding-block-start: var(--wpds-dimension-padding-md);
+		padding-block-start: var(--wpds-dimension-padding-2xl);
 	}
 }
 
 .wc-sales-readiness-row {
-	display: flex;
-	gap: var(--wpds-dimension-gap-md);
 	padding: var(--wpds-dimension-padding-md) 0;
 	margin: 0;
 
 	&__marker {
 		flex: 0 0 auto;
-		width: 20px;
-		height: 20px;
-		margin-block-start: 1px;
-		border: 1.5px dashed var(--wpds-color-stroke-surface-neutral);
-		border-radius: 50%;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		box-sizing: border-box;
+		color: var(--wc-sr-muted);
 
 		&--done {
-			border: 0;
-			color: var(--wpds-color-foreground-content-success);
+			fill: var(--wpds-color-foreground-content-neutral);
 		}
 	}
 
 	&__body {
 		flex: 1;
 		min-width: 0;
-		display: flex;
-		flex-direction: column;
 		gap: 2px;
 	}
 
-	&__head {
-		display: flex;
-		align-items: flex-start;
-		justify-content: space-between;
-		gap: var(--wpds-dimension-gap-md);
+	&__title {
+		display: inline-flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: var(--wpds-dimension-gap-sm);
+		font-weight: 500;
 	}
 
-	&__title {
-		font-weight: 500;
-
-		&--done {
-			color: var(--wc-sr-muted);
-			font-weight: 400;
-		}
+	// The fix line reads as an instruction, so it keeps the text color.
+	&__fix {
+		color: var(--wpds-color-foreground-content-neutral);
 	}
 
 	&__link {

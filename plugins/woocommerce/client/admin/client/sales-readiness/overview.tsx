@@ -1,7 +1,7 @@
 /**
  * External dependencies
  */
-import { Badge, Card, Text } from '@wordpress/ui';
+import { Badge, Card, Stack, Text } from '@wordpress/ui';
 import { Button, Notice, Spinner } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -37,7 +37,9 @@ export default function SalesReadinessOverview() {
 			<Card.Root className="wc-sales-readiness-card">
 				<Card.Header>
 					<div className="wc-sales-readiness-card__head">
-						<Card.Title>{ shopping.title }</Card.Title>
+						<Card.Title className="wc-sales-readiness-card__title">
+							{ shopping.title }
+						</Card.Title>
 						{ shopping.badge && (
 							<Badge intent={ shopping.badge.intent }>
 								{ shopping.badge.text }
@@ -46,7 +48,12 @@ export default function SalesReadinessOverview() {
 					</div>
 				</Card.Header>
 				<Card.Content>
-					<Text variant="body-md">{ shopping.text }</Text>
+					<Text
+						variant="body-md"
+						className="wc-sales-readiness__muted"
+					>
+						{ shopping.text }
+					</Text>
 					<div className="wc-sales-readiness-card__actions">
 						<Button
 							variant="secondary"
@@ -59,18 +66,27 @@ export default function SalesReadinessOverview() {
 			</Card.Root>
 			<Card.Root className="wc-sales-readiness-card">
 				<Card.Header>
-					<Card.Title>{ view.title }</Card.Title>
+					<Card.Title className="wc-sales-readiness-card__title">
+						{ view.title }
+					</Card.Title>
 				</Card.Header>
 				<Card.Content>
-					<Text variant="body-md">{ view.description }</Text>
-					{ view.checked_note && (
+					<Stack direction="column" gap="xs">
 						<Text
-							variant="body-sm"
+							variant="body-md"
 							className="wc-sales-readiness__muted"
 						>
-							{ view.checked_note }
+							{ view.description }
 						</Text>
-					) }
+						{ view.checked_note && (
+							<Text
+								variant="body-sm"
+								className="wc-sales-readiness__muted"
+							>
+								{ view.checked_note }
+							</Text>
+						) }
+					</Stack>
 					{ view.intro ? (
 						<>
 							<Text
